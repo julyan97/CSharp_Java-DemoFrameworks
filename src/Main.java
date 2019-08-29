@@ -14,7 +14,7 @@ public class Main {
                 ,"root"
                 ,"");
 
-
+//TODO delete and update
         User2 user = new User2("hi148","jo168","777388");
           demoFramework.createTableByModel(user);
           demoFramework.add(user);
