@@ -15,11 +15,14 @@ import java.sql.SQLException;
 import java.util.Arrays;
 
 public class DemoFramework<T> implements Inter<T> {
-      private static final Object T = null;
       private Connection connection;
 
       public Connection getConnection() {
             return connection;
+      }
+
+      public DemoFramework(Connection connection) {
+            this.connection = connection;
       }
 
       public void setConnection(String url, String name, String password) throws SQLException {
@@ -31,12 +34,8 @@ public class DemoFramework<T> implements Inter<T> {
             this.connection = DriverManager.getConnection(url,name,password);
       }
 
-
-
-
-
       @Override
-      public void add(T model12) throws SQLException, IllegalAccessException, InvocationTargetException {
+      public void addByModel(T model12) throws SQLException, IllegalAccessException, InvocationTargetException {
             var declaredFields = model12.getClass().getDeclaredFields();
             var methods=model12.getClass().getDeclaredMethods();
             StringBuilder sb=new StringBuilder();
@@ -81,16 +80,20 @@ public class DemoFramework<T> implements Inter<T> {
 
       }
 
-
-
       @Override
-      public void delete(String where) throws SQLException {
+      public void delete(String FromTable,String where) throws SQLException {
             String query = String.format(
-                    "Delete %s",
+                    "Delete %s where %s",
+                    FromTable,
                     where
             );
             connection.prepareStatement(query)
                     .execute();
+      }
+
+      @Override
+      public void deleteByModel(T mpdel) {
+
       }
 
       @Override
@@ -105,9 +108,9 @@ public class DemoFramework<T> implements Inter<T> {
       }
 
       @Override
-      public void select(String selectn,String from) throws SQLException {
+      public void select(String select,String from) throws SQLException {
             var query=String.format("Select %s from %s"
-                    ,selectn
+                    ,select
                     ,from
                     );
             connection.prepareStatement(query);

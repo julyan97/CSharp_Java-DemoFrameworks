@@ -4,9 +4,11 @@ import java.sql.SQLException;
 
 public interface Inter<T> {
 
-      void add(T object) throws SQLException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException;
+      void addByModel(T object) throws SQLException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, InstantiationException;
 
-      void delete(String where) throws SQLException;
+      void delete(String FromTable,String where) throws SQLException;
+
+      void deleteByModel(T mpdel);
 
        void update(String ToUpdate, String data) throws SQLException;
 
