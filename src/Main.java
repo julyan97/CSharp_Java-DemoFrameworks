@@ -1,10 +1,7 @@
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import Data.DemoFramework;
 
-import static java.util.stream.Collectors.*;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 public class Main {
 
@@ -19,6 +16,7 @@ public class Main {
           // db.createTableByModel(User2.class);
           // db.addByModel(user);
            db.deleteByModel(user);
+
 
 
 

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e8c92d41-6250-4f2d-ab84-01a0638c7acd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DemoFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DemoFramework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +72,7 @@
       <workItem from="1567022090304" duration="7984000" />
       <workItem from="1567071608499" duration="5338000" />
       <workItem from="1567090577456" duration="4561000" />
-      <workItem from="1567149999945" duration="9327000" />
+      <workItem from="1567149999945" duration="11770000" />
     </task>
     <task id="LOCAL-00001" summary="update1">
       <created>1567090818866</created>
@@ -95,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567182802232</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update4">
+      <created>1567188891655</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1567188891655</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,19 +125,12 @@
     <MESSAGE value="update1" />
     <MESSAGE value="update2" />
     <MESSAGE value="update3" />
-    <option name="LAST_COMMIT_MESSAGE" value="update3" />
+    <MESSAGE value="update4" />
+    <option name="LAST_COMMIT_MESSAGE" value="update4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/DemoFramework.java</url>
-          <line>80</line>
-          <properties class="DemoFramework" method="deleteByModel">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DemoFramework.java</url>
           <line>112</line>
