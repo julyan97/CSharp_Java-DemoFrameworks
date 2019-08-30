@@ -2,6 +2,7 @@ import Data.DemoFramework;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
 
@@ -11,16 +12,17 @@ public class Main {
                 ,"root"
                 ,"");
 
-//TODO delete and update
-        User2 user = new User2("hi1489","jo168","777388");
-          // db.createTableByModel(User2.class);
-          // db.addByModel(user);
-           db.deleteByModel(user);
+                  Petkan p=new Petkan(25,true,3.9F,"mazda");
 
+                  db.createTableByModel(Petkan.class);
+                  //db.addByModel(p);
+        //Todo MAKE IT WORK
+        //  List select = db.select("*", Petkan.class);
 
-
-
-
-
-	}
+        // db.addByModel(p);
+        //db.deleteByModel(p);
+         // db.delete(Petkan.class.getSimpleName(),"razmer = '2'");
+         // db.pureQuery("Delete from petkans");
+         // db.update(Petkan.class.getSimpleName()+"s","");
+    }
 }

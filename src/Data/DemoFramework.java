@@ -61,7 +61,7 @@ public class DemoFramework<T> implements Inter<T> {
       @Override
       public void delete(String FromTable,String where) throws SQLException {
             String query = String.format(
-                    "Delete %s where %s",
+                    "Delete from %ss where %s",
                     FromTable,
                     where
             );
@@ -88,6 +88,8 @@ public class DemoFramework<T> implements Inter<T> {
             connection.prepareStatement(sb.toString()).execute();
       }
 
+
+      //Todo overload with model and make it work
       @Override
       public void update(String table,String data) throws SQLException {
             String query = String.format(
@@ -99,6 +101,7 @@ public class DemoFramework<T> implements Inter<T> {
                     .execute();
       }
 
+      //todo doesnt wotk fix it
       @Override
       public List<String> select(String select, Class model) throws SQLException {
             var query=String.format("Select %s from %s"

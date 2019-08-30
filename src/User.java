@@ -1,38 +1,14 @@
-class User2 {
+class Petkan {
 
-      private String email;
-      private String firstName;
-      private String lastName;
+      private int razmer;
+      private boolean brada;
+      private float sila;
+      private String imeNaKola;
 
-      public  User2(){}
-      
-      public User2(String email, String firstName, String lastName) {
-            this.email = email;
-            this.firstName = firstName;
-            this.lastName = lastName;
-      }
-
-      public String getEmail() {
-            return email;
-      }
-
-      public void setEmail(String email) {
-            this.email = email;
-      }
-
-      public String getFirstName() {
-            return firstName;
-      }
-
-      public void setFirstName(String firstName) {
-            this.firstName = firstName;
-      }
-
-      public String getLastName() {
-            return lastName;
-      }
-
-      public void setLastName(String lastName) {
-            this.lastName = lastName;
+      public Petkan(int razmer, boolean brada, float sila, String imeNaKola) {
+            this.razmer = razmer;
+            this.brada = brada;
+            this.sila = sila;
+            this.imeNaKola = imeNaKola;
       }
 }

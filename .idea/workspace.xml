@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="untitled:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e8c92d41-6250-4f2d-ab84-01a0638c7acd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/untitled_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled/DemoFramework.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled/Inter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled/User2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/DemoFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/DemoFramework.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,10 +40,11 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -72,7 +87,7 @@
       <workItem from="1567022090304" duration="7984000" />
       <workItem from="1567071608499" duration="5338000" />
       <workItem from="1567090577456" duration="4561000" />
-      <workItem from="1567149999945" duration="11770000" />
+      <workItem from="1567149999945" duration="16268000" />
     </task>
     <task id="LOCAL-00001" summary="update1">
       <created>1567090818866</created>
@@ -102,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567188891655</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update5">
+      <created>1567193513639</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1567193513640</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,13 +148,14 @@
     <MESSAGE value="update2" />
     <MESSAGE value="update3" />
     <MESSAGE value="update4" />
-    <option name="LAST_COMMIT_MESSAGE" value="update4" />
+    <MESSAGE value="update5" />
+    <option name="LAST_COMMIT_MESSAGE" value="update5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DemoFramework.java</url>
+          <url>file://$PROJECT_DIR$/src/Data/DemoFramework.java</url>
           <line>112</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
