@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.List;
 
 public class DemoFramework<T> implements Inter<T> {
       private Connection connection;
@@ -25,11 +26,6 @@ public class DemoFramework<T> implements Inter<T> {
             this.connection = connection;
       }
 
-      public void setConnection(String url, String name, String password) throws SQLException {
-            this.connection = DriverManager.getConnection(url,name,password);
-      }
-
-
       public DemoFramework(String url, String name, String password) throws SQLException {
             this.connection = DriverManager.getConnection(url,name,password);
       }
@@ -37,7 +33,6 @@ public class DemoFramework<T> implements Inter<T> {
       @Override
       public void addByModel(T model12) throws SQLException, IllegalAccessException, InvocationTargetException {
             var declaredFields = model12.getClass().getDeclaredFields();
-            var methods=model12.getClass().getDeclaredMethods();
             StringBuilder sb=new StringBuilder();
             StringBuilder sb2=new StringBuilder();
             //SB1
@@ -49,27 +44,15 @@ public class DemoFramework<T> implements Inter<T> {
 
             //SB2
 
-            var listMethods= Arrays.stream(methods)
-                    .filter(x->x.getName().startsWith("get"))
-                    .map(x-> {
-                          try {
-                                return x.invoke(model12);
-                          } catch (IllegalAccessException e) {
-                                e.printStackTrace();
-                          } catch (InvocationTargetException e) {
-                                e.printStackTrace();
-                          }
-                          return "";
-                    })
-                    .collect(toList());
-
 
 
             sb2.append(" (");
-            for (int i = 0; i < listMethods.size()-1; i++) {
-                  sb2.append("\"").append(listMethods.get(i)).append("\"").append(",");
+            for (int i = 0; i < declaredFields.length-1; i++) {
+                  declaredFields[i].setAccessible(true);
+                  sb2.append("\"").append(declaredFields[i].get(model12)).append("\"").append(",");
             }
-            sb2.append("\"").append(listMethods.get(listMethods.size() - 1)).append("\"").append(")");
+            declaredFields[declaredFields.length-1].setAccessible(true);
+            sb2.append("\"").append(declaredFields[declaredFields.length-1].get(model12)).append("\"").append(")");
 
 
 
@@ -92,15 +75,29 @@ public class DemoFramework<T> implements Inter<T> {
       }
 
       @Override
-      public void deleteByModel(T mpdel) {
+      public void deleteByModel(T model) throws IllegalAccessException, SQLException {
+             StringBuilder sb= new StringBuilder();
+             sb.append("Delete From ").append(model.getClass().getSimpleName()).append("s");
+             sb.append(" where ");
+             var fields= model.getClass().getDeclaredFields();
+            for (int i = 0; i < fields.length-1 ; i++) {
+                  sb.append(fields[i].getName()).append("=\"");
+                  fields[i].setAccessible(true);
+                  sb.append(fields[i].get(model)).append("\" and ");
+            }
+            fields[fields.length-1].setAccessible(true);
+            sb.append(fields[fields.length-1].getName()).append("=\"");
+            sb.append(fields[fields.length-1].get(model)).append("\" ");
+            System.out.println(sb.toString());
 
+            connection.prepareStatement(sb.toString()).execute();
       }
 
       @Override
-      public void update(String ToUpdate,String data) throws SQLException {
+      public void update(String table,String data) throws SQLException {
             String query = String.format(
-                    "UPDATE `users` SET `%s`=%s",
-                    ToUpdate,
+                    "UPDATE %s SET %s",
+                    table,
                     data
             );
             connection.prepareStatement(query)
@@ -108,12 +105,34 @@ public class DemoFramework<T> implements Inter<T> {
       }
 
       @Override
-      public void select(String select,String from) throws SQLException {
+      public List<String> select(String select, Class model) throws SQLException {
             var query=String.format("Select %s from %s"
                     ,select
-                    ,from
+                    ,model.getSimpleName()+"s"
                     );
-            connection.prepareStatement(query);
+           var rs = connection.prepareStatement(query).executeQuery();
+           var list=new ArrayList<String>();
+           int counter=0;
+           var fields=model.getDeclaredFields();
+           while (rs.next())
+           {
+                 if(select.equals("*")) {
+                       list.add(rs.getString(fields[counter].getName()));
+                       counter++;
+                 }
+                 else
+                 {
+                       var start=select.split(",");
+                       var commands=new ArrayList<String>();
+                       for (int i = 0; i < start.length; i++) {
+                             commands.add(start[i].split("=")[0].trim());
+                       }
+                       list.add(rs.getString(commands.get(counter)));
+                       counter++;
+
+                 }
+           }
+           return list;
       }
 
       @Override
@@ -122,11 +141,11 @@ public class DemoFramework<T> implements Inter<T> {
       }
 
       @Override
-      public void createTableByModel(T model) throws SQLException {
-            var fields=model.getClass().getDeclaredFields();
+      public void createTableByModel(Class model) throws SQLException {
+            var fields=model.getDeclaredFields();
             StringBuilder sb=new StringBuilder();
             sb.append("Create table if not exists ")
-                    .append(model.getClass().getName())
+                    .append(model.getName())
                     .append("s")
                     .append(" ( ")
                     .append("id int(11) not null auto_increment,");

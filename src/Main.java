@@ -16,8 +16,9 @@ public class Main {
 
 //TODO delete and update
         User2 user = new User2("hi148","jo168","777388");
-          db.createTableByModel(user);
-          db.addByModel(user);
+          // db.createTableByModel(User2.class);
+          // db.addByModel(user);
+          // db.deleteByModel(user);
 
 
 

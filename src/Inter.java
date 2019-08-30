@@ -1,6 +1,7 @@
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public interface Inter<T> {
 
@@ -8,13 +9,13 @@ public interface Inter<T> {
 
       void delete(String FromTable,String where) throws SQLException;
 
-      void deleteByModel(T mpdel);
+      void deleteByModel(T mpdel) throws IllegalAccessException, SQLException;
 
        void update(String ToUpdate, String data) throws SQLException;
 
-       void select(String select, String from) throws SQLException;
+       List<String> select(String select, Class model) throws SQLException;
 
        void pureQuery(String query) throws SQLException;
 
-       void createTableByModel(T model) throws SQLException;
+       void createTableByModel(Class model) throws SQLException;
 }
