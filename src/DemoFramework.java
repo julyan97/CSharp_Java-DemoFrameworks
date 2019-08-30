@@ -14,6 +14,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.LogManager;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 public class DemoFramework<T> implements Inter<T> {
       private Connection connection;
@@ -57,7 +60,8 @@ public class DemoFramework<T> implements Inter<T> {
 
 
             String query = "INSERT INTO "+model12.getClass().getSimpleName()+"s"+" "+sb.toString()+ "VALUES "+sb2.toString();
-            System.out.println(query);
+
+            Logger.getLogger(model12.getClass().getName()).info(query+"\n");
             connection.prepareStatement(query)
                     .execute();
 
@@ -88,8 +92,8 @@ public class DemoFramework<T> implements Inter<T> {
             fields[fields.length-1].setAccessible(true);
             sb.append(fields[fields.length-1].getName()).append("=\"");
             sb.append(fields[fields.length-1].get(model)).append("\" ");
-            System.out.println(sb.toString());
 
+            Logger.getLogger(model.getClass().getName()).info(sb.toString()+"\n");
             connection.prepareStatement(sb.toString()).execute();
       }
 
