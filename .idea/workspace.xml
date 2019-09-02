@@ -6,18 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8c92d41-6250-4f2d-ab84-01a0638c7acd" name="Default Changelist" comment="">
+    <list default="true" id="e8c92d41-6250-4f2d-ab84-01a0638c7acd" name="Default Changelist" comment="update6">
       <change afterPath="$PROJECT_DIR$/.idea/artifacts/untitled_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled/DemoFramework.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled/Inter.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled/User2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Data/DemoFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/DemoFramework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Inter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Inter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +82,8 @@
       <workItem from="1567022090304" duration="7984000" />
       <workItem from="1567071608499" duration="5338000" />
       <workItem from="1567090577456" duration="4561000" />
-      <workItem from="1567149999945" duration="16268000" />
+      <workItem from="1567149999945" duration="19834000" />
+      <workItem from="1567413228558" duration="3270000" />
     </task>
     <task id="LOCAL-00001" summary="update1">
       <created>1567090818866</created>
@@ -124,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567193513640</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update6">
+      <created>1567201518541</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1567201518541</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +152,8 @@
     <MESSAGE value="update3" />
     <MESSAGE value="update4" />
     <MESSAGE value="update5" />
-    <option name="LAST_COMMIT_MESSAGE" value="update5" />
+    <MESSAGE value="update6" />
+    <option name="LAST_COMMIT_MESSAGE" value="update6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -101,36 +101,46 @@ public class DemoFramework<T> implements Inter<T> {
                     .execute();
       }
 
+      //todo
+      @Override
+      public void update(T model) throws SQLException {
+
+      }
+
       //todo doesnt wotk fix it
       @Override
-      public List<String> select(String select, Class model) throws SQLException {
+      public ArrayList<ArrayList<String>> select(String select, Class model) throws SQLException {
             var query=String.format("Select %s from %s"
                     ,select
                     ,model.getSimpleName()+"s"
                     );
            var rs = connection.prepareStatement(query).executeQuery();
            var list=new ArrayList<String>();
-           int counter=0;
+           ArrayList<ArrayList<String>> mainList=new ArrayList<>();
            var fields=model.getDeclaredFields();
            while (rs.next())
            {
+                 for (int counter = 0; counter < fields.length ; counter++) {
                  if(select.equals("*")) {
                        list.add(rs.getString(fields[counter].getName()));
-                       counter++;
                  }
                  else
                  {
                        var start=select.split(",");
                        var commands=new ArrayList<String>();
-                       for (int i = 0; i < start.length; i++) {
-                             commands.add(start[i].split("=")[0].trim());
+                       for (int x = 0; x < start.length; x++) {
+                             commands.add(start[x].split("=")[0].trim());
                        }
                        list.add(rs.getString(commands.get(counter)));
-                       counter++;
+
 
                  }
-           }
-           return list;
+            }
+
+               mainList.add(list);
+               list.clear();
+         }
+           return mainList;
       }
 
       @Override
