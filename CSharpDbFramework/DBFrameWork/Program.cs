@@ -25,7 +25,7 @@ namespace DBFrameWork
             assemblies.ToList().ForEach(x => Console.WriteLine(x.Name));
             var user = new User("jojo", "23");
             var fields = user.GetType()
-                .GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                .GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
             foreach (var field in fields)
             {

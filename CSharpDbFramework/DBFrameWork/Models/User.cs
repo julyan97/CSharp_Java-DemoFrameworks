@@ -8,7 +8,7 @@ namespace DBFrameWork
     public class User
     {
         [MyName("kobra")]
-        public int id;
+        private int id;
         private string name;
         private string age;
 
