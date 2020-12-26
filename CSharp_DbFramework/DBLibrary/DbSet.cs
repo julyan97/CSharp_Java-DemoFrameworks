@@ -112,7 +112,7 @@ namespace DBLibrary
             catch(Exception ex)
             {
                 FillLists();
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.Message);
             }
         }
 
@@ -123,17 +123,17 @@ namespace DBLibrary
                 var command = new SqlCommand($"Select * from {typeof(TEntity).Name}s", connection).ExecuteReader();
                 while (command.Read())
                 {
-                    Console.WriteLine(command);
+                    //Console.WriteLine(command);
                     var entry = Activator.CreateInstance<TEntity>();
                     var type = entry.GetType();
                     var fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
                     var field = fields[0];
-                    Console.WriteLine($"{field} {command[field.Name]}");
+                    //Console.WriteLine($"{field} {command[field.Name]}");
                     field.SetValue(entry, command[field.Name]);
                     for (int i = 1; i < fields.Length; i++)
                     {
                         field = fields[i];
-                        Console.WriteLine($"{field} {command[field.Name]}");
+                       // Console.WriteLine($"{field} {command[field.Name]}");
                         field.SetValue(entry, command[field.Name]);
 
                     }

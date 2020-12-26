@@ -13,10 +13,11 @@ namespace DBFrameWork
         
         public ApplicationDbContext(string connectionString) : base(connectionString)
         {
+
                 base.OnCreate();
         }
-        
-        public DbSet<User> Users { get; set; }
+
+        public DbSet<User> Users { get; set; } 
         public DbSet<Mark> Marks { get; set; }
 
 
