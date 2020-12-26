@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DBLibrary
 {
-    class Configurations
+    public class Configurations
     {
         private dynamic settings;
 
