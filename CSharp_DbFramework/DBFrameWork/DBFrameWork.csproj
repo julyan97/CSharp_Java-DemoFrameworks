@@ -13,4 +13,10 @@
     <ProjectReference Include="..\DBLibrary\DBLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

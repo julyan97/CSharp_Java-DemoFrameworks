@@ -14,9 +14,10 @@ namespace DBFrameWork
     {
         static void Main(string[] args)
         {
-            ApplicationDbContext db = new ApplicationDbContext(
-                "ConnectionString");
-            //TODO:add config file to read importnat info
+            //To use add a config.json file to the project with your connectionString
+            Configurations configurations = new Configurations();
+
+            ApplicationDbContext db = new ApplicationDbContext(configurations["ConnectionString"]);
 
             var user = new User("jojo", "23");
 
