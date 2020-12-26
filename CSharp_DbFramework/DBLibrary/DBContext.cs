@@ -28,8 +28,9 @@ namespace DBLibrary
                 Console.WriteLine(generics.Name);
                 pro.GetAccessors()[1].Invoke(this, new object[] { curinstance });
 
-
-                curinstance.GetType().GetMethod("CreateInstanceOfTable").Invoke(curinstance, null);
+                dynamic dynamicInastance = curinstance;
+                dynamicInastance.CreateInstanceOfTable();
+                //curinstance.GetType().GetMethod("CreateInstanceOfTable").Invoke(curinstance, null);
                 Console.WriteLine("-----------");
 
             }
@@ -51,6 +52,20 @@ namespace DBLibrary
 
             }
             connection.Close();
+        }
+
+        public void DropAllTables()
+        {
+            var currentClass = this.GetType();
+            var properties = currentClass.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+
+            foreach (var prop in properties)
+            {
+                dynamic instance = prop.GetAccessors()[0].Invoke(this, null);
+                instance.DropTable();
+                //instance.GetType().GetMethod("DropTable", BindingFlags.Public | BindingFlags.Instance).Invoke(instance, null);
+                //Console.WriteLine("-----------");
+            }
         }
 
 

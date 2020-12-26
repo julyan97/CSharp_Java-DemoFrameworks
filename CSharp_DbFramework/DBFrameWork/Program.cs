@@ -16,12 +16,12 @@ namespace DBFrameWork
         {
             //To use add a config.json file to the project with your connectionString
             Configurations configurations = new Configurations();
-
             ApplicationDbContext db = new ApplicationDbContext(configurations["ConnectionString"]);
 
             var user = new User("jojo", "23");
 
             db.Users.entities.Add(user);
+            db.DropAllTables();
             db.SaveChanges();
 
 
