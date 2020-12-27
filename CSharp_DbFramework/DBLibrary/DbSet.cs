@@ -33,6 +33,7 @@ namespace DBLibrary
         {
             AddEntitiesToDataBase();
             DeleteEntitiesFromDataBase();
+            UpdateEntitiesFromDataBase();
         }
 
         private void AddEntitiesToDataBase()
@@ -104,7 +105,57 @@ namespace DBLibrary
             }
 
         }
+        private void UpdateEntitiesFromDataBase()
+        {
+            //UPDATE Customers
+            //SET ContactName = 'Alfred Schmidt', City = 'Frankfurt'
+            //WHERE CustomerID = 1;
 
+            try
+            {
+                Func<TEntity,TEntity, int> compare = (x, y) => ((dynamic)x).Id.CompareTo(((dynamic)x).Id);
+                bool same = true;
+
+                for (int x = 0; x < entities.Count; x++)
+                {
+                    var cur = entities[x];
+                    var type = typeof(TEntity);
+                    var fields = type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+                    
+
+                    int curId = (int)fields[0].GetValue(cur);
+                    var curEntityToCheck = checkList.FirstOrDefault(x => ((dynamic)x).Id == curId);
+                    for (int i = 0; i < fields.Length; i++)
+                    {
+                        var field = fields[i];
+                        if (field.GetValue(curEntityToCheck) != field.GetValue(cur))
+                        {
+                            same = false;
+                            break;
+                        }
+                    }
+                    if(same == false)
+                    {
+                        string query = $"Update {typeof(TEntity).Name}s Set ";
+                        for (int i = 1; i < fields.Length; i++)
+                        {
+                            var FieldName = fields[i].Name;
+                            FieldName = char.ToUpper(FieldName[0]) + FieldName.Substring(1);
+                            var fieldValue = fields[i].GetValue(cur);
+
+                            query += $"{FieldName} = '{fieldValue}',";
+                        }
+                        query = query.Remove(query.Length - 1);
+                        query += $" where Id = {curId}";
+                        var command = new SqlCommand(query, connection).ExecuteNonQuery();
+                    }
+                    
+                }
+
+            }
+            catch { }
+
+        }
         public virtual void CreateInstanceOfTable()
         {
             var type = typeof(TEntity);

@@ -23,18 +23,15 @@ namespace DBFrameWork
             var user2= new User("jojo", "58");
             var user3 = new User("jojo", "63");
 
-            db.Users.entities.Add(user);
-            db.Users.entities.Add(user1);
-            db.Users.entities.Add(user2);
-            db.Users.entities.Add(user3);
-
+            
             var en = db.Users.entities;
-            Console.WriteLine("en: " +en.Count+" ");
+            en.Add(new User("Jake", "12222"));
             en.RemoveAt(0);
+            en[0].Name = "GoshoMosho";
+            Console.WriteLine("en: " +en.Count+" ");
 
 
 
-            db.DropAllTables();
             db.SaveChanges();
 
 
