@@ -15,8 +15,7 @@ namespace DBFrameWork
         static void Main(string[] args)
         {
             //To use add a config.json file to the project with your connectionString
-            Configurations configurations = new Configurations();
-            var db = new ApplicationDbContext(configurations["ConnectionString"]);
+            var db = new ApplicationDbContext();
 
             var user = new User("jake", "23");
             var user1 = new User("jojo", "32"); 
@@ -27,7 +26,7 @@ namespace DBFrameWork
             var en = db.Users.entities;
             en.Add(new User("Jake", "12222"));
             en.RemoveAt(0);
-            en[0].Name = "GoshoMosho";
+            en[0].Name = "GoshoDosho";
             Console.WriteLine("en: " +en.Count+" ");
 
 

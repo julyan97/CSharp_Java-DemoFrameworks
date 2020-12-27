@@ -10,9 +10,11 @@ namespace DBLibrary
     {
         private SqlConnection connection;
 
-        public DBContext(string connectionString)
+        public DBContext()
         {
-            connection = new SqlConnection(connectionString);
+            Configurations conf = new Configurations();
+            connection = new SqlConnection(conf["ConnectionString"]);
+            OnCreate();
         }
         public virtual void OnCreate()
         {
