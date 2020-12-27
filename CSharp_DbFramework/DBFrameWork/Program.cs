@@ -29,6 +29,11 @@ namespace DBFrameWork
             en[0].Name = "GoshoDosho";
             Console.WriteLine("en: " +en.Count+" ");
 
+            var r = db.Users.entities
+          .GroupBy(i => i.Name)
+          .OrderByDescending(grp => grp.Count())
+          .Select(grp => grp.Key)
+          .First();
 
 
             db.SaveChanges();

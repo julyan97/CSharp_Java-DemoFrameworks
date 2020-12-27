@@ -11,7 +11,7 @@ namespace DBFrameWork
     {
         public DbSet<User> Users { get; set; } 
         public DbSet<Mark> Marks { get; set; }
-
+        
 
     }
 }
