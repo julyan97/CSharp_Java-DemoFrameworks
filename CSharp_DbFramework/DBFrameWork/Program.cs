@@ -27,15 +27,12 @@ namespace DBFrameWork
             db.Users.entities.Add(user1);
             db.Users.entities.Add(user2);
             db.Users.entities.Add(user3);
-           
 
-            var mostCommanUser = db.Users.entities
-             .GroupBy(i => i.Name)
-             .OrderByDescending(grp => grp.Count())
-             .Select(grp => grp.Key)
-             .First();
+            var en = db.Users.entities;
+            Console.WriteLine("en: " +en.Count+" ");
+            en.RemoveAt(0);
 
-            Console.WriteLine(mostCommanUser);
+
 
             db.DropAllTables();
             db.SaveChanges();

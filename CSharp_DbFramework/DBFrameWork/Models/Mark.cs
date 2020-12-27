@@ -12,8 +12,12 @@ namespace DBFrameWork.Models
 
         public Mark(string type, string carOwner)
         {
-            this.type = type;
-            this.carOwner = carOwner;
+            this.Type = type;
+            this.CarOwner = carOwner;
         }
+
+        public int Id { get => id; set => id = value; }
+        public string Type { get => type; set => type = value; }
+        public string CarOwner { get => carOwner; set => carOwner = value; }
     }
 }

@@ -40,18 +40,22 @@ namespace DBLibrary
 
         public void SaveChanges()
         {
-            connection.Open();
-            var currentClass = this.GetType();
-            var properties = currentClass.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-
-            foreach (var prop in properties)
+            try
             {
-                var instance = prop.GetAccessors()[0].Invoke(this, null);
-                instance.GetType().GetMethod("SaveChanges",BindingFlags.NonPublic|BindingFlags.Instance).Invoke(instance, null);
-                //Console.WriteLine("-----------");
+                connection.Open();
+                var currentClass = this.GetType();
+                var properties = currentClass.GetProperties(BindingFlags.Instance | BindingFlags.Public);
 
+                foreach (var prop in properties)
+                {
+                    var instance = prop.GetAccessors()[0].Invoke(this, null);
+                    instance.GetType().GetMethod("SaveChanges", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(instance, null);
+                    //Console.WriteLine("-----------");
+
+                }
+                connection.Close();
             }
-            connection.Close();
+            catch { }
         }
 
         public void DropAllTables()

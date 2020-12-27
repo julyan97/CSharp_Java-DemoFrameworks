@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace DBLibrary
 {
-    public class DbSet<TEntity> 
+    public class DbSet<TEntity>
     {
         public List<TEntity> entities;
         private List<TEntity> checkList;
@@ -26,60 +26,85 @@ namespace DBLibrary
         public void DropTable()
         {
             connection.Open();
-            var command = new SqlCommand($"DROP TABLE {typeof(TEntity).Name}s",connection).ExecuteNonQuery();
+            var command = new SqlCommand($"DROP TABLE {typeof(TEntity).Name}s", connection).ExecuteNonQuery();
             connection.Close();
         }
         private void SaveChanges()
         {
+            AddEntitiesToDataBase();
+            DeleteEntitiesFromDataBase();
+        }
+
+        private void AddEntitiesToDataBase()
+        {
+            // INSERT INTO table_name (column1, column2, column3, ...)
+            // VALUES(value1, value2, value3, ...);
             try
             {
-                bool added = entities.Count > checkList.Count ? true : false;
-                if (true)
+                Func<TEntity, bool> func = (x) => ((dynamic)x).Id == 0;
+                var list = entities.Where(func).ToList();
+
+                for (int x = 0; x < list.Count; x++)
                 {
-                    int counter = 0;
-                    while (true)
+                    var cur = list[x];
+                    var type = typeof(TEntity);
+                    var fields = type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+                    var fieldTemp = fields[0].Name.ToCharArray();
+                    Console.WriteLine();
+                    string query = $"insert into {typeof(TEntity).Name}s ( ";
+
+                    for (int i = 1; i < fields.Length; i++)
                     {
-
-                        var index = entities.Count - 1 - counter;
-                        if (index < 0) break;
-                        var cur = entities[index];
-
-                        // INSERT INTO table_name (column1, column2, column3, ...)
-                        // VALUES(value1, value2, value3, ...);
-                        if (!checkList.Contains(cur))
-                        {
-                            var type = typeof(TEntity);
-                            var fields = type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
-                            var fieldTemp = fields[0].Name.ToCharArray();
-                            Console.WriteLine();
-                            string query = $"insert into {typeof(TEntity).Name}s ( ";
-
-                            for (int i = 1; i < fields.Length; i++)
-                            {
-                                var field = fields[i];
-                                query += $"{char.ToUpper(field.Name[0]) + field.Name.Substring(1)},";
-                                //query += $",'{(string)field.GetValue(cur)}'";
-                            }
-                            query = query.Remove(query.Length - 1);
-                            query += ") VALUES (";
-                            for (int i = 1; i < fields.Length; i++)
-                            {
-                                var field = fields[i];
-                                query += $"'{(string)field.GetValue(cur)}',";
-                            }
-                            query = query.Remove(query.Length - 1);
-                            query += ");";
-                            var command = new SqlCommand(query, connection).ExecuteNonQuery();
-
-
-                            counter++;
-                        }
-                        else break;
+                        var field = fields[i];
+                        query += $"{char.ToUpper(field.Name[0]) + field.Name.Substring(1)},";
+                        //query += $",'{(string)field.GetValue(cur)}'";
                     }
+                    query = query.Remove(query.Length - 1);
+                    query += ") VALUES (";
+                    for (int i = 1; i < fields.Length; i++)
+                    {
+                        var field = fields[i];
+                        query += $"'{(string)field.GetValue(cur)}',";
+                    }
+                    query = query.Remove(query.Length - 1);
+                    query += ");";
+                    var command = new SqlCommand(query, connection).ExecuteNonQuery();
                 }
+
             }
             catch { }
         }
+        private void DeleteEntitiesFromDataBase()
+        {
+            //DELETE FROM Customers WHERE CustomerName = 'Alfreds Futterkiste';
+
+            Func<TEntity, bool> func = (x) => ((dynamic)x).Id == 0;
+            List<int> checkListId = checkList.Select(x => (int)((dynamic)x).Id).ToList();
+            var listOfIdiesToRemove = new List<int>();
+            foreach (var cur in checkListId)
+            {
+                //var test = entities.Where(x => ((dynamic)x).Id == cur && ((dynamic)x).Id != 0).ToList();
+                if (entities.Any(x => ((dynamic)x).Id == cur && ((dynamic)x).Id != 0))
+                {
+                    continue;
+                }
+                listOfIdiesToRemove.Add(cur);
+            }
+            //TODO: check all idies if they exist if bot delete them from the database
+            var list = entities.Where(func).ToList();
+
+            for (int x = 0; x < listOfIdiesToRemove.Count; x++)
+            {
+                var cur = listOfIdiesToRemove[x];
+                var type = typeof(TEntity);
+
+                string query = $"DELETE FROM {typeof(TEntity).Name}s where Id = '{cur}'; ";
+                Console.WriteLine(query);
+                var command = new SqlCommand(query, connection).ExecuteNonQuery();
+            }
+
+        }
+
         public virtual void CreateInstanceOfTable()
         {
             var type = typeof(TEntity);
@@ -106,12 +131,12 @@ namespace DBLibrary
             {
                 var command = new SqlCommand(query, connection).ExecuteNonQuery();
                 Console.WriteLine("");
-                FillLists();
+                //FillLists();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                FillLists();
+                //FillLists();
                 //Console.WriteLine(ex.Message);
             }
         }
@@ -133,7 +158,7 @@ namespace DBLibrary
                     for (int i = 1; i < fields.Length; i++)
                     {
                         field = fields[i];
-                       // Console.WriteLine($"{field} {command[field.Name]}");
+                        // Console.WriteLine($"{field} {command[field.Name]}");
                         field.SetValue(entry, command[field.Name]);
 
                     }
